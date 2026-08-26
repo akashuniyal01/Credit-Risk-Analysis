@@ -58,7 +58,7 @@ if st.session_state.page == "prediction":
     # Q1: Age
     age = st.slider(
         "Age",
-        1,
+        18,
         100,
         25
     )
