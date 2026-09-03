@@ -228,7 +228,21 @@ if st.session_state.page == "prediction":
         fig, ax = plt.subplots()
         shap.plots.waterfall(shap_values[0], max_display=12, show=False)
         st.pyplot(fig)
+        with st.expander("📚 How to Read SHAP", expanded=False):
+        st.markdown("""
+        **SHAP explains why the model made this prediction.**
 
+        🔴 **Red** → pushes risk higher  
+        🔵 **Blue** → pushes risk lower  
+
+        📏 **Longer bar** → greater impact on the prediction
+
+         **Example:**  
+        `loan_int_rate` with a red bar → increases predicted risk.  
+        `person_income` with a blue bar → decreases predicted risk.
+
+        💡 SHAP explains the model's prediction; it does not prove cause and effect.
+        """)
             
 # ==========================================================
 # DATA ANALYSIS PAGE
@@ -241,21 +255,7 @@ elif st.session_state.page == "analysis":
     st.write(
         "Explore the credit risk dataset using the following visualizations."
     )
-with st.expander("📚 How to Read SHAP", expanded=False):
-    st.markdown("""
-    **SHAP explains why the model made this prediction.**
 
-    🔴 **Red** → pushes risk higher  
-    🔵 **Blue** → pushes risk lower  
-
-    📏 **Longer bar** → greater impact on the prediction
-
-    **Example:**  
-    `loan_int_rate` with a red bar → increases predicted risk.  
-    `person_income` with a blue bar → decreases predicted risk.
-
-    💡 SHAP explains the model's prediction; it does not prove cause and effect.
-    """)
     # -------------------------
     # Dataset overview
     # -------------------------
