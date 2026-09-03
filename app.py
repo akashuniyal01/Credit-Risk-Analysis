@@ -206,7 +206,7 @@ if st.session_state.page == "prediction":
 
         # Prediction
         prediction = model.predict(input_df)
-        shap_values = explainer(row)
+        shap_values = explainer(input_df)
 
         # Result
         if prediction[0] == 1:
