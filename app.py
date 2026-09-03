@@ -1,4 +1,5 @@
 import streamlit as st
+import shap
 import joblib
 import numpy as np
 import pandas as pd
@@ -10,6 +11,7 @@ import seaborn as sns
 # =========================
 
 model = joblib.load('model.pkl')
+explainer = joblib.load('shap_explainer.pkl')
 feature_columns = joblib.load('feature_columns.pkl')
 imputer = joblib.load('imputer.pkl')
 scaler = joblib.load('scaler.pkl')
@@ -204,6 +206,7 @@ if st.session_state.page == "prediction":
 
         # Prediction
         prediction = model.predict(input_df)
+        shap_values = explainer(row)
 
         # Result
         if prediction[0] == 1:
@@ -221,8 +224,12 @@ if st.session_state.page == "prediction":
             st.write(
                 "The applicant is unlikely to default on the loan."
             )
+        st.markdown("### 🔍 SHAP Waterfall Plot (Why this prediction?)")
+        fig, ax = plt.subplots()
+        shap.plots.waterfall(shap_values[0], max_display=12, show=False)
+        st.pyplot(fig)
 
-
+            
 # ==========================================================
 # DATA ANALYSIS PAGE
 # ==========================================================
