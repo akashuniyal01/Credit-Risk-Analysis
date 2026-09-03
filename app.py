@@ -241,7 +241,21 @@ elif st.session_state.page == "analysis":
     st.write(
         "Explore the credit risk dataset using the following visualizations."
     )
+with st.expander("📚 How to Read SHAP", expanded=False):
+    st.markdown("""
+    **SHAP explains why the model made this prediction.**
 
+    🔴 **Red** → pushes risk higher  
+    🔵 **Blue** → pushes risk lower  
+
+    📏 **Longer bar** → greater impact on the prediction
+
+    **Example:**  
+    `loan_int_rate` with a red bar → increases predicted risk.  
+    `person_income` with a blue bar → decreases predicted risk.
+
+    💡 SHAP explains the model's prediction; it does not prove cause and effect.
+    """)
     # -------------------------
     # Dataset overview
     # -------------------------
