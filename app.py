@@ -123,14 +123,13 @@ if st.session_state.page == "prediction":
         0.1
     )
 
-    # Q9: Loan Percent Income
-    loan_percent_income = st.slider(
-        "Loan Percent Income",
-        0.0,
-        1.0,
-        0.2,
-        0.01
-    )
+   # Q9: Loan Percent Income (calculated automatically)
+if income > 0:
+    loan_percent_income = round(loan_amnt / income, 2)
+else:
+    loan_percent_income = 0.0
+
+st.metric("Loan Percent Income (auto-calculated)", f"{loan_percent_income:.2f}")
 
     # Q10: Previous Default
     cb_person_default_on_file = st.radio(
