@@ -129,7 +129,7 @@ if st.session_state.page == "prediction":
     else:
         loan_percent_income = 0.0
 
-    st.metric("Loan Percent Income (auto-calculated)", f"{loan_percent_income:.2f}")
+    st.metric("Loan Percent Income", f"{loan_percent_income:.2f}")
 
     # Q10: Previous Default
     cb_person_default_on_file = st.radio(
